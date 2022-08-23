@@ -28,19 +28,19 @@
                                 <i class="icn pa-input-checkmark-filled-icon">
                                 </i>
                                 <input type="text" maxlength="19" class="pa-text-input" name="senderCardNumber"
-                                    placeholder="ბარათის 16-ნიშნა ნომერი" id="senderCardNumber"/>
+                                    placeholder="ბარათის 16-ნიშნა ნომერი" id="senderCardNumber" autocomplete="off"/>
                             </div>
                         </div>
                     </div>
                     <div class="security-container mt-16">
                         <div>
-                            <label class="label-01 is-white">თვე</label>
+                            <label class="label-01 is-white" for="month">თვე</label>
                             <input type="text" name="expiry_month" id="month" class="pa-text-input" placeholder="MM"
                                 maxlength="2" />
 
                         </div>
                         <div>
-                            <label class="label-01 is-white">წელი</label>
+                            <label class="label-01 is-white" for="expiry_year">წელი</label>
                             <input type="text" name="expiry_year" id="expiry_year" class="pa-text-input"
                                 placeholder="YY" maxlength="2" />
                         </div>
@@ -299,7 +299,7 @@
                                         </i>
                                         <input type="text" maxlength="19" class="pa-text-input"
                                             placeholder="ბარათის 16-ნიშნა ნომერი" name="receiverCardNumber"
-                                            tabindex="-1">
+                                            tabindex="-1" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
