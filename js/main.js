@@ -62,7 +62,7 @@ const formData = {
     },
   },
   receiverStep: {
-    receiverCardNumber: {
+    receiver: {
       value: null,
       valid: false,
     },
@@ -159,7 +159,7 @@ const isValidFormData = () => {
   const {
     senderStep: { senderCardNumber, expiry_month, expiry_year, cvv },
     amountStep: { amount },
-    receiverStep: { receiverCardNumber },
+    receiverStep: { receiver },
   } = formData;
 
   const isSenderCardNumberValid = /^[0-9]{16}$/g.test(
@@ -173,8 +173,8 @@ const isValidFormData = () => {
   const isCvvValid = /^[0-9]{3}$/g.test(cvv.value);
   const isAmountValid =
     parseFloat(amount.value) > 0 && parseFloat(amount.value) <= 99999;
-  const isReceiverCardNumberValid = /^[0-9]{16}$/g.test(
-    receiverCardNumber.value.replaceAll(" ", "")
+  const isreceiverValid = /^[0-9]{16}$/g.test(
+    receiver.value.replaceAll(" ", "")
   );
 
   return (
@@ -183,7 +183,7 @@ const isValidFormData = () => {
     isYearValid &&
     isCvvValid &&
     isAmountValid &&
-    isReceiverCardNumberValid
+    isreceiverValid
   );
 };
 
@@ -291,7 +291,7 @@ $(document).ready(function () {
     }
   });
 
-  $('input[name="senderCardNumber"], input[name="receiverCardNumber"]').on(
+  $('input[name="senderCardNumber"], input[name="receiver"]').on(
     "keydown",
     function (e) {
       const keycode = e.keyCode;
@@ -338,13 +338,13 @@ $(document).ready(function () {
 
       const senderCard = $(this).validateCreditCard();
       const receiverCard = $(
-        'input[name="receiverCardNumber"]'
+        'input[name="receiver"]'
       ).validateCreditCard();
-      const receiverCardValue = $('input[name="receiverCardNumber"]').val();
+      const receiverCardValue = $('input[name="receiver"]').val();
 
       const isValidSenderCardNum =
         senderCard?.valid &&
-        this.value !== formData.receiverStep.receiverCardNumber.value;
+        this.value !== formData.receiverStep.receiver.value;
 
       const isValidReceiverCardNum =
         receiverCard?.valid && receiverCardValue !== this.value;
@@ -354,7 +354,7 @@ $(document).ready(function () {
         valid: isValidSenderCardNum,
       };
 
-      formData.receiverStep.receiverCardNumber = {
+      formData.receiverStep.receiver = {
         value: receiverCardValue,
         valid: isValidReceiverCardNum,
       };
@@ -365,7 +365,7 @@ $(document).ready(function () {
         .addClass(`${isValidSenderCardNum ? "valid" : "invalid"}`)
         .removeClass(`${isValidSenderCardNum ? "invalid" : "valid"}`);
 
-      $('input[name="receiverCardNumber"]')
+      $('input[name="receiver"]')
         .addClass(
           `${
             isValidReceiverCardNum
@@ -580,7 +580,7 @@ $(document).ready(function () {
     validateForm();
   });
 
-  $('input[name="receiverCardNumber"]').on(
+  $('input[name="receiver"]').on(
     "keyup keypress input change",
     function () {
       let s = this.selectionStart,
@@ -611,7 +611,7 @@ $(document).ready(function () {
         valid: isValidSenderCardNum,
       };
 
-      formData.receiverStep.receiverCardNumber = {
+      formData.receiverStep.receiver = {
         value: this.value,
         valid: isValidReceiverCardNum,
       };
@@ -630,12 +630,12 @@ $(document).ready(function () {
         )
         .removeClass(`${isValidSenderCardNum ? "invalid" : "valid"}`);
 
-      $('input[name="receiverCardNumber"]')
+      $('input[name="receiver"]')
         .addClass(`${isValidReceiverCardNum ? "valid" : "invalid"}`)
         .removeClass(`${isValidReceiverCardNum ? "invalid" : "valid"}`);
 
       $("#receiverCard i").html(getCardTypeIcon(receiverCard?.card_type?.name));
-      $('input[name="receiverCardNumber"]').each((index, element) => {
+      $('input[name="receiver"]').each((index, element) => {
         $(element).val(this.value);
       });
 
