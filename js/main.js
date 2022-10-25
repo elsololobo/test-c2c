@@ -10,7 +10,7 @@ const visa = `
                 id="Fill-114" fill="#1A1F70"></path>
         </g>
     </svg>
-`;
+`
 
 const mastercard = `
     <svg width="46px" height="32px" viewBox="0 0 46 32" version="1.1" class="mastercard"
@@ -32,150 +32,150 @@ const mastercard = `
             </g>
         </g>
     </svg>
-`;
+`
 
-const MIN_YEAR = new Date().getFullYear() % 100;
+const MIN_YEAR = new Date().getFullYear() % 100
 
 const formData = {
   senderStep: {
     senderCardNumber: {
       value: null,
-      valid: false,
+      valid: false
     },
     expiry_month: {
       value: null,
-      valid: false,
+      valid: false
     },
     expiry_year: {
       value: null,
-      valid: false,
+      valid: false
     },
     cvv: {
       value: null,
-      valid: false,
-    },
+      valid: false
+    }
   },
   amountStep: {
     amount: {
       value: null,
-      valid: false,
-    },
+      valid: false
+    }
   },
   receiverStep: {
     receiver: {
       value: null,
-      valid: false,
-    },
-  },
-};
+      valid: false
+    }
+  }
+}
 
 const getCardTypeIcon = (name) => {
   switch (name) {
-    case "mastercard":
-      return mastercard;
-    case "visa":
-      return visa;
+    case 'mastercard':
+      return mastercard
+    case 'visa':
+      return visa
     default:
-      return "";
+      return ''
   }
-};
+}
 
 const formatCardNumber = (value) => {
-  const regex = /^(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})$/g;
-  const onlyNumbers = value.replace(/[^\d]/g, "");
+  const regex = /^(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})$/g
+  const onlyNumbers = value.replace(/[^\d]/g, '')
 
   return onlyNumbers.replace(regex, (regex, $1, $2, $3, $4) =>
-    [$1, $2, $3, $4].filter((group) => !!group).join(" ")
-  );
-};
+    [$1, $2, $3, $4].filter((group) => !!group).join(' ')
+  )
+}
 
 const formatTwoDigit = (num) => {
-  return num.toString().length === 1 ? `0${num}` : num;
-};
+  return num.toString().length === 1 ? `0${num}` : num
+}
 
 const formatCurrency = (value) => {
-  const num = Number(value);
-  return num ? `${num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,")}` : value;
-};
+  const num = Number(value)
+  return num ? `${num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}` : value
+}
 
 const formatValidSteps = () => {
-  const steps = Object.keys(formData);
+  const steps = Object.keys(formData)
   steps.forEach((step, i) => {
     if (isValidStep(step)) {
-      $(`#dot-${i}`).addClass("dot-valid");
+      $(`#dot-${i}`).addClass('dot-valid')
     }
-  });
-};
+  })
+}
 
 const formatNextSteps = (fromIndex) => {
-  const total = swiper.slides.length;
+  const total = swiper.slides.length
   for (let i = fromIndex + 1; i < total; i++) {
-    $(`#dot-${i}`).removeClass("dot-valid");
+    $(`#dot-${i}`).removeClass('dot-valid')
     if (i !== fromIndex + 1) {
-      $(`#dot-${i}`).removeClass("dot-available");
+      $(`#dot-${i}`).removeClass('dot-available')
     }
   }
-};
+}
 
 const isAllValid = () => {
-  const isValid = Object.keys(formData).every((step) => isValidStep(step));
-  return isValid;
-};
+  const isValid = Object.keys(formData).every((step) => isValidStep(step))
+  return isValid
+}
 
 const isValidStep = (step) => {
-  const stepValues = Object.keys(formData[step]);
+  const stepValues = Object.keys(formData[step])
   const isValid = stepValues.every((valueKey) => {
-    const { valid } = formData[step][valueKey];
+    const { valid } = formData[step][valueKey]
 
-    return valid;
-  });
-  return isValid;
-};
+    return valid
+  })
+  return isValid
+}
 
 const validateForm = (currentSlideIndex = swiper.activeIndex) => {
   if (isAllValid()) {
-    enableSubmitButton();
+    enableSubmitButton()
   } else {
-    disableSubmitButton();
+    disableSubmitButton()
   }
 
-  const steps = Object.keys(formData);
-  const currentStep = steps[currentSlideIndex];
+  const steps = Object.keys(formData)
+  const currentStep = steps[currentSlideIndex]
 
   if (isValidStep(currentStep)) {
-    enableNextButton();
-    swiper.allowSlideNext = true;
-    $(`#dot-${currentSlideIndex}`).addClass("dot-valid");
-    $(`#dot-${currentSlideIndex + 1}`).addClass("dot-available");
+    enableNextButton()
+    swiper.allowSlideNext = true
+    $(`#dot-${currentSlideIndex}`).addClass('dot-valid')
+    $(`#dot-${currentSlideIndex + 1}`).addClass('dot-available')
   } else {
-    disableNextButton();
-    swiper.allowSlideNext = false;
-    $(`#dot-${currentSlideIndex}`).removeClass("dot-valid");
-    $(`#dot-${currentSlideIndex + 1}`).removeClass("dot-available");
+    disableNextButton()
+    swiper.allowSlideNext = false
+    $(`#dot-${currentSlideIndex}`).removeClass('dot-valid')
+    $(`#dot-${currentSlideIndex + 1}`).removeClass('dot-available')
   }
-};
+}
 
 const isValidFormData = () => {
   const {
     senderStep: { senderCardNumber, expiry_month, expiry_year, cvv },
     amountStep: { amount },
-    receiverStep: { receiver },
-  } = formData;
+    receiverStep: { receiver }
+  } = formData
 
   const isSenderCardNumberValid = /^[0-9]{16}$/g.test(
-    senderCardNumber.value.replaceAll(" ", "")
-  );
+    senderCardNumber.value.replaceAll(' ', '')
+  )
   const isMonthValid =
-    parseInt(expiry_month.value) >= 1 && parseInt(expiry_month.value) <= 12;
+    parseInt(expiry_month.value) >= 1 && parseInt(expiry_month.value) <= 12
   const isYearValid =
     parseInt(expiry_year.value) >= MIN_YEAR &&
-    parseInt(expiry_year.value) <= 99;
-  const isCvvValid = /^[0-9]{3}$/g.test(cvv.value);
+    parseInt(expiry_year.value) <= 99
+  const isCvvValid = /^[0-9]{3}$/g.test(cvv.value)
   const isAmountValid =
-    parseFloat(amount.value) > 0 && parseFloat(amount.value) <= 99999;
+    parseFloat(amount.value) > 0 && parseFloat(amount.value) <= 99999
   const isreceiverValid = /^[0-9]{16}$/g.test(
-    receiver.value.replaceAll(" ", "")
-  );
+    receiver.value.replaceAll(' ', '')
+  )
 
   return (
     isSenderCardNumberValid &&
@@ -184,127 +184,127 @@ const isValidFormData = () => {
     isCvvValid &&
     isAmountValid &&
     isreceiverValid
-  );
-};
+  )
+}
 
 const validateMonth = (month, year) => {
-  let minMonth = null;
+  let minMonth = null
   const isCurrentYear =
-    (year || formData.senderStep.expiry_year.value) === MIN_YEAR;
+    (year || formData.senderStep.expiry_year.value) === MIN_YEAR
 
   if (isCurrentYear) {
-    minMonth = new Date().getMonth() + 1;
+    minMonth = new Date().getMonth() + 1
   }
 
-  const isValidRange = month >= 1 && month <= 12;
+  const isValidRange = month >= 1 && month <= 12
   const isValidMonth = minMonth
     ? month >= minMonth && isValidRange
-    : isValidRange;
+    : isValidRange
 
-  return isValidMonth;
-};
+  return isValidMonth
+}
 
 const disableNextButton = () => {
-  $(".next-button").attr("disabled", true);
-  $(".next-button").addClass("btn-disabled");
-};
+  $('.next-button').attr('disabled', true)
+  $('.next-button').addClass('btn-disabled')
+}
 
 const enableNextButton = () => {
-  $(".next-button").removeAttr("disabled");
-  $(".next-button").removeClass("btn-disabled");
-};
+  $('.next-button').removeAttr('disabled')
+  $('.next-button').removeClass('btn-disabled')
+}
 
 const hideNextButton = () => {
-  $(".next-button").addClass("hidden");
-};
+  $('.next-button').addClass('hidden')
+}
 
 const showNextButton = () => {
-  $(".next-button").removeClass("hidden");
-};
+  $('.next-button').removeClass('hidden')
+}
 
 const disableSubmitButton = () => {
-  $('button[name="submitTransfer"]').attr("disabled", true);
-  $('button[name="submitTransfer"]').addClass("btn-disabled");
-};
+  $('button[name="submitTransfer"]').attr('disabled', true)
+  $('button[name="submitTransfer"]').addClass('btn-disabled')
+}
 
 const enableSubmitButton = () => {
-  $('button[name="submitTransfer"]').removeAttr("disabled");
-  $('button[name="submitTransfer"]').removeClass("btn-disabled");
-};
+  $('button[name="submitTransfer"]').removeAttr('disabled')
+  $('button[name="submitTransfer"]').removeClass('btn-disabled')
+}
 
 const changeActiveDot = (prevIndex, activeIndex) => {
-  $(`#dot-${prevIndex}`).removeClass("swiper-dot-active");
-  $(`#dot-${activeIndex}`).addClass("swiper-dot-active");
-};
+  $(`#dot-${prevIndex}`).removeClass('swiper-dot-active')
+  $(`#dot-${activeIndex}`).addClass('swiper-dot-active')
+}
 
-const swiper = new Swiper(".swiper", {
+const swiper = new Swiper('.swiper', {
   allowSlideNext: false,
   centeredSlides: true,
-  longSwipes: false,
-});
+  longSwipes: false
+})
 
-swiper.on("slideChange", (swiper) => {
-  validateForm();
-  formatValidSteps();
+swiper.on('slideChange', (swiper) => {
+  validateForm()
+  formatValidSteps()
 
   if (swiper.previousIndex > swiper.activeIndex) {
-    const currentSlideIndex = swiper.activeIndex;
+    const currentSlideIndex = swiper.activeIndex
 
-    formatNextSteps(currentSlideIndex);
+    formatNextSteps(currentSlideIndex)
   }
 
-  changeActiveDot(swiper.previousIndex, swiper.activeIndex);
+  changeActiveDot(swiper.previousIndex, swiper.activeIndex)
 
-  const lastSlideIndex = swiper.slides.length - 1;
+  const lastSlideIndex = swiper.slides.length - 1
 
   if (swiper.activeIndex === lastSlideIndex) {
-    hideNextButton();
+    hideNextButton()
   } else {
-    showNextButton();
+    showNextButton()
   }
-});
+})
 
 $(document).ready(function () {
-  $('[data-bs-toggle="tooltip"]').tooltip();
-  $(".loader").addClass("hidden");
+  $('[data-bs-toggle="tooltip"]').tooltip()
+  $('.loader').addClass('hidden')
 
-  $(".next-button").on("click", function () {
-    swiper.slideNext();
-    changeActiveDot(swiper.previousIndex, swiper.activeIndex);
-  });
+  $('.next-button').on('click', function () {
+    swiper.slideNext()
+    changeActiveDot(swiper.previousIndex, swiper.activeIndex)
+  })
 
-  $(".swiper-dot").on("click", function (e) {
-    if (e?.target?.attributes["data-index"]?.value) {
-      const index = parseInt(e.target.attributes["data-index"].value);
-      const currentSlideIndex = swiper.activeIndex;
-      const isDirectionNext = index > currentSlideIndex;
+  $('.swiper-dot').on('click', function (e) {
+    if (e?.target?.attributes['data-index']?.value) {
+      const index = parseInt(e.target.attributes['data-index'].value)
+      const currentSlideIndex = swiper.activeIndex
+      const isDirectionNext = index > currentSlideIndex
 
       if (!isDirectionNext) {
-        swiper.slideTo(index);
-        changeActiveDot(currentSlideIndex, index);
+        swiper.slideTo(index)
+        changeActiveDot(currentSlideIndex, index)
       } else {
         if (index - currentSlideIndex === 1 && swiper.allowSlideNext) {
-          swiper.slideTo(index);
-          changeActiveDot(currentSlideIndex, index);
+          swiper.slideTo(index)
+          changeActiveDot(currentSlideIndex, index)
         }
       }
     }
-  });
+  })
 
   $('input[name="senderCardNumber"], input[name="receiver"]').on(
-    "keydown",
+    'keydown',
     function (e) {
-      const keycode = e.keyCode;
-      if (e.shiftKey == true) return false;
+      const keycode = e.keyCode
+      if (e.shiftKey == true) return false
       if (
         (keycode >= 48 && keycode <= 57) ||
         (keycode >= 96 && keycode <= 105)
       ) {
-        return true;
+        return true
       }
 
       if ([8, 9, 110, 39, 37, 46].indexOf(keycode) >= 0) {
-        return true;
+        return true
       }
 
       if (
@@ -315,202 +315,200 @@ $(document).ready(function () {
           keycode == 90) &&
         (e.ctrlKey === true || e.metaKey === true)
       ) {
-        return true;
+        return true
       }
 
-      return false;
+      return false
     }
-  );
+  )
 
   $('input[name="senderCardNumber"]').on(
-    "keyup keypress input change",
+    'keyup keypress input change',
     function () {
       let s = this.selectionStart,
-        e = this.selectionEnd;
-      const oldleft = $(this).val().substr(0, s).replace(/[^ ]/g, "").length;
+        e = this.selectionEnd
+      const oldleft = $(this).val().substr(0, s).replace(/[^ ]/g, '').length
       $(this).val(function (index, value) {
-        return formatCardNumber(value.replace(/\W/gi, ""));
-      });
-      const newleft = $(this).val().substr(0, s).replace(/[^ ]/g, "").length;
-      s += newleft - oldleft;
-      e += newleft - oldleft;
-      this.setSelectionRange(s, e);
+        return formatCardNumber(value.replace(/\W/gi, ''))
+      })
+      const newleft = $(this).val().substr(0, s).replace(/[^ ]/g, '').length
+      s += newleft - oldleft
+      e += newleft - oldleft
+      this.setSelectionRange(s, e)
 
-      const senderCard = $(this).validateCreditCard();
+      const senderCard = $(this).validateCreditCard()
       const receiverCard = $(
         'input[name="receiver"]'
-      ).validateCreditCard();
-      const receiverCardValue = $('input[name="receiver"]').val();
+      ).validateCreditCard()
+      const receiverCardValue = $('input[name="receiver"]').val()
 
       const isValidSenderCardNum =
         senderCard?.valid &&
-        this.value !== formData.receiverStep.receiver.value;
+        this.value !== formData.receiverStep.receiver.value
 
       const isValidReceiverCardNum =
-        receiverCard?.valid && receiverCardValue !== this.value;
+        receiverCard?.valid && receiverCardValue !== this.value
 
       formData.senderStep.senderCardNumber = {
         value: this.value,
-        valid: isValidSenderCardNum,
-      };
+        valid: isValidSenderCardNum
+      }
 
       formData.receiverStep.receiver = {
         value: receiverCardValue,
-        valid: isValidReceiverCardNum,
-      };
+        valid: isValidReceiverCardNum
+      }
 
-      const isReceiverCardNumEmpty = !receiverCardValue.length;
+      const isReceiverCardNumEmpty = !receiverCardValue.length
 
-      $('input[name="senderCardNumber"]')
-        .addClass(`${isValidSenderCardNum ? "valid" : "invalid"}`)
-        .removeClass(`${isValidSenderCardNum ? "invalid" : "valid"}`);
+      $('input[name="senderCardNumber"]').
+        addClass(`${isValidSenderCardNum ? 'valid' : 'invalid'}`).
+        removeClass(`${isValidSenderCardNum ? 'invalid' : 'valid'}`)
 
-      $('input[name="receiver"]')
-        .addClass(
-          `${
-            isValidReceiverCardNum
-              ? "valid"
-              : !isReceiverCardNumEmpty
-              ? "invalid"
-              : ""
-          }`
-        )
-        .removeClass(`${isValidReceiverCardNum ? "invalid" : "valid"}`);
+      $('input[name="receiver"]').addClass(
+        `${
+          isValidReceiverCardNum
+            ? 'valid'
+            : !isReceiverCardNumEmpty
+              ? 'invalid'
+              : ''
+        }`
+      ).removeClass(`${isValidReceiverCardNum ? 'invalid' : 'valid'}`)
 
-      $("#senderCard i").html(getCardTypeIcon(senderCard?.card_type?.name));
+      $('#senderCard i').html(getCardTypeIcon(senderCard?.card_type?.name))
       $('input[name="senderCardNumber"]').each((index, element) => {
-        $(element).val(this.value);
-      });
+        $(element).val(this.value)
+      })
 
-      validateForm();
+      validateForm()
     }
-  );
+  )
 
   $('input[name="expiry_month"], input[name="expiry_year"]').on(
-    "change",
+    'change',
     function () {
       if (!parseInt(this.value)) {
-        $(this).val("");
+        $(this).val('')
       } else {
         $(this).val(function (index, value) {
-          return formatTwoDigit(value);
-        });
+          return formatTwoDigit(value)
+        })
       }
     }
-  );
+  )
 
-  $('input[name="expiry_month"]').on("input", function () {
+  $('input[name="expiry_month"]').on('input', function () {
     $(this).val(function (index, value) {
-      return value.replace(/[^0-9]/g, "");
-    });
+      return value.replace(/[^0-9]/g, '')
+    })
 
-    const parsedMonth = parseInt(this.value);
-    const isValidMonth = validateMonth(parsedMonth);
+    const parsedMonth = parseInt(this.value)
+    const isValidMonth = validateMonth(parsedMonth)
 
     formData.senderStep.expiry_month = {
       value: parsedMonth,
-      valid: isValidMonth,
-    };
+      valid: isValidMonth
+    }
 
-    $('input[name="expiry_month"]').val(this.value);
-    $('input[name="expiry_month"]')
-      .addClass(`${isValidMonth ? "valid" : "invalid"}`)
-      .removeClass(`${isValidMonth ? "invalid" : "valid"}`);
+    $('input[name="expiry_month"]').val(this.value)
+    $('input[name="expiry_month"]').
+      addClass(`${isValidMonth ? 'valid' : 'invalid'}`).
+      removeClass(`${isValidMonth ? 'invalid' : 'valid'}`)
 
-    validateForm();
-  });
+    validateForm()
+  })
 
-  $('input[name="expiry_year"]').on("input", function () {
+  $('input[name="expiry_year"]').on('input', function () {
     $(this).val(function (index, value) {
-      return value.replace(/[^0-9]/g, "");
-    });
+      return value.replace(/[^0-9]/g, '')
+    })
 
-    const parsedYear = parseInt(this.value);
-    const isValidYear = parsedYear >= MIN_YEAR && parsedYear <= 99;
+    const parsedYear = parseInt(this.value)
+    const isValidYear = parsedYear >= MIN_YEAR && parsedYear <= 99
 
-    const parsedMonth = parseInt($('input[name="expiry_month"]').val());
-    const isValidMonth = validateMonth(parsedMonth, parsedYear);
+    const parsedMonth = parseInt($('input[name="expiry_month"]').val())
+    const isValidMonth = validateMonth(parsedMonth, parsedYear)
 
     formData.senderStep.expiry_month = {
       value: parsedMonth,
-      valid: isValidMonth,
-    };
+      valid: isValidMonth
+    }
     formData.senderStep.expiry_year = {
       value: parsedYear,
-      valid: isValidYear,
-    };
+      valid: isValidYear
+    }
 
-    $('input[name="expiry_month"]')
-      .addClass(`${isValidMonth ? "valid" : "invalid"}`)
-      .removeClass(`${isValidMonth ? "invalid" : "valid"}`);
+    $('input[name="expiry_month"]').
+      addClass(`${isValidMonth ? 'valid' : 'invalid'}`).
+      removeClass(`${isValidMonth ? 'invalid' : 'valid'}`)
 
-    $('input[name="expiry_year"]').val(this.value);
-    $('input[name="expiry_year"]')
-      .addClass(`${isValidYear ? "valid" : "invalid"}`)
-      .removeClass(`${isValidYear ? "invalid" : "valid"}`);
+    $('input[name="expiry_year"]').val(this.value)
+    $('input[name="expiry_year"]').
+      addClass(`${isValidYear ? 'valid' : 'invalid'}`).
+      removeClass(`${isValidYear ? 'invalid' : 'valid'}`)
 
-    validateForm();
-  });
+    validateForm()
+  })
 
-  $('input[name="cvv"]').on("input", function () {
+  $('input[name="cvv"]').on('input', function () {
     $(this).val(function (index, value) {
-      return value.replace(/[^0-9]/g, "");
-    });
+      return value.replace(/[^0-9]/g, '')
+    })
 
-    const isValidCVV = this.value.length === 3;
+    const isValidCVV = this.value.length === 3
 
     formData.senderStep.cvv = {
       value: this.value,
-      valid: isValidCVV,
-    };
-
-    $('input[name="cvv"]').val(this.value);
-    $('input[name="cvv"]')
-      .addClass(`${isValidCVV ? "valid" : "invalid"}`)
-      .removeClass(`${isValidCVV ? "invalid" : "valid"}`);
-
-    validateForm();
-  });
-
-  $('input[name="amount"]').on("change", function () {
-    const validFloat = this.value.replace(",", ".");
-    const parsedAmount = parseFloat(validFloat);
-
-    if (!parsedAmount) {
-      $('input[name="amount"]').val("");
-      return;
+      valid: isValidCVV
     }
 
-    $('input[name="amount"]').val(formatCurrency(parsedAmount));
-  });
+    $('input[name="cvv"]').val(this.value)
+    $('input[name="cvv"]').
+      addClass(`${isValidCVV ? 'valid' : 'invalid'}`).
+      removeClass(`${isValidCVV ? 'invalid' : 'valid'}`)
 
-  $('input[name="amount"]').on("keydown", function (e) {
-    const keycode = e.which || e.keyCode || 0;
-    if (e.shiftKey == true || e.ctrlKey == true) return false;
+    validateForm()
+  })
+
+  $('input[name="amount"]').on('change', function () {
+    const validFloat = this.value.replace(',', '.')
+    const parsedAmount = parseFloat(validFloat)
+
+    if (!parsedAmount) {
+      $('input[name="amount"]').val('')
+      return
+    }
+
+    $('input[name="amount"]').val(formatCurrency(parsedAmount))
+  })
+
+  $('input[name="amount"]').on('keydown', function (e) {
+    const keycode = e.which || e.keyCode || 0
+    if (e.shiftKey == true || e.ctrlKey == true) return false
     if (
-      [8, 9, 110, 39, 37, 46].indexOf(keycode) >= 0 || // allow tab, dot, left and right arrows, deconste keys
+      [8, 9, 39, 37, 46].indexOf(keycode) >= 0 || // allow tab, dot, left and right arrows, deconste keys
       (keycode == 190 &&
-        this.value.indexOf(".") === -1 &&
-        this.value.indexOf(",") === -1) || // allow dot if not exists in the value
+        this.value.indexOf('.') === -1 &&
+        this.value.indexOf(',') === -1) || // allow dot if not exists in the value
       (keycode == 110 &&
-        this.value.indexOf(".") === -1 &&
-        this.value.indexOf(",") === -1) || // allow dot if not exists in the value
+        this.value.indexOf('.') === -1 &&
+        this.value.indexOf(',') === -1) || // allow dot if not exists in the value
       (keycode == 188 &&
-        this.value.indexOf(",") === -1 &&
-        this.value.indexOf(".") === -1) || // allow comma if not exists in the value
+        this.value.indexOf(',') === -1 &&
+        this.value.indexOf('.') === -1) || // allow comma if not exists in the value
       (((keycode >= 48 && keycode <= 57) ||
-        (keycode >= 96 && keycode <= 105)) &&
-        this.value !== "0") // allow numbers if first number is not zero
+          (keycode >= 96 && keycode <= 105)) &&
+        this.value !== '0') // allow numbers if first number is not zero
     ) {
       // allow numpad numbers
       // check for the decimals after dot and prevent any digits
-      const isUsingDot = this.value.indexOf(".") !== -1;
-      const parts = isUsingDot ? this.value.split(".") : this.value.split(",");
+      const isUsingDot = this.value.indexOf('.') !== -1
+      const parts = isUsingDot ? this.value.split('.') : this.value.split(',')
       const decimalIndex = isUsingDot
-        ? this.value.indexOf(".")
-        : this.value.indexOf(",");
-      const cursorStartIndex = e.target.selectionStart;
-      const cursorEndIndex = e.target.selectionEnd;
+        ? this.value.indexOf('.')
+        : this.value.indexOf(',')
+      const cursorStartIndex = e.target.selectionStart
+      const cursorEndIndex = e.target.selectionEnd
 
       if (
         cursorStartIndex > decimalIndex && // only prevent input after decimal
@@ -518,15 +516,15 @@ $(document).ready(function () {
         parts[1].length >= 2 && // should limit this
         ((keycode >= 48 && keycode <= 57) || (keycode >= 96 && keycode <= 105)) // requested key is a digit
       ) {
-        return false;
+        return false
       } else {
         if (keycode == 110) {
-          this.value += ".";
-          return false;
+          this.value += '.'
+          return false
         }
         if (keycode == 188) {
-          this.value += ".";
-          return false;
+          this.value += '.'
+          return false
         }
 
         // prevent inputing numbers after zero if amount has decimal numbers
@@ -534,11 +532,11 @@ $(document).ready(function () {
           cursorStartIndex !== 0 &&
           cursorStartIndex === cursorEndIndex &&
           cursorStartIndex <= decimalIndex &&
-          parts[0] === "0" &&
+          parts[0] === '0' &&
           ((keycode >= 48 && keycode <= 57) ||
             (keycode >= 96 && keycode <= 105))
         ) {
-          return false;
+          return false
         }
 
         // prevent inputing zero at first index if amount has decimal numbers
@@ -547,103 +545,101 @@ $(document).ready(function () {
           cursorStartIndex === 0 &&
           cursorStartIndex === cursorEndIndex &&
           parts.length > 1 &&
-          parts[0] !== ""
+          parts[0] !== ''
         ) {
-          return false;
+          return false
         }
 
-        return true;
+        return true
       }
     } else {
-      return false;
+      return false
     }
-  });
+  })
 
-  $('input[name="amount"]').on("input", function () {
-    const validFloat = this.value.replace(",", ".");
+  $('input[name="amount"]').on('input', function () {
+    const validFloat = this.value.replace(',', '.')
     const value =
-      parseFloat(validFloat) > 99999.99 ? this.value.slice(0, -1) : this.value;
-    const parsedAmount = parseFloat(validFloat);
+      parseFloat(validFloat) > 99999.99 ? this.value.slice(0, -1) : this.value
+    const parsedAmount = parseFloat(validFloat)
 
-    const isValidAmount = parsedAmount > 0;
+    const isValidAmount = parsedAmount > 0
 
     formData.amountStep.amount = {
       value: parsedAmount,
-      valid: isValidAmount,
-    };
+      valid: isValidAmount
+    }
 
-    $('input[name="amount"]').val(value);
-    $('input[name="amount"]')
-      .addClass(`${isValidAmount ? "valid" : "invalid"}`)
-      .removeClass(`${isValidAmount ? "invalid" : "valid"}`);
+    $('input[name="amount"]').val(value)
+    $('input[name="amount"]').
+      addClass(`${isValidAmount ? 'valid' : 'invalid'}`).
+      removeClass(`${isValidAmount ? 'invalid' : 'valid'}`)
 
-    validateForm();
-  });
+    validateForm()
+  })
 
   $('input[name="receiver"]').on(
-    "keyup keypress input change",
+    'keyup keypress input change',
     function () {
       let s = this.selectionStart,
-        e = this.selectionEnd;
-      const oldleft = $(this).val().substr(0, s).replace(/[^ ]/g, "").length;
+        e = this.selectionEnd
+      const oldleft = $(this).val().substr(0, s).replace(/[^ ]/g, '').length
       $(this).val(function (index, value) {
-        return formatCardNumber(value.replace(/\W/gi, ""));
-      });
-      const newleft = $(this).val().substr(0, s).replace(/[^ ]/g, "").length;
-      s += newleft - oldleft;
-      e += newleft - oldleft;
-      this.setSelectionRange(s, e);
+        return formatCardNumber(value.replace(/\W/gi, ''))
+      })
+      const newleft = $(this).val().substr(0, s).replace(/[^ ]/g, '').length
+      s += newleft - oldleft
+      e += newleft - oldleft
+      this.setSelectionRange(s, e)
 
-      const receiverCard = $(this).validateCreditCard();
+      const receiverCard = $(this).validateCreditCard()
       const senderCard = $(
         'input[name="senderCardNumber"]'
-      ).validateCreditCard();
-      const senderCardValue = $('input[name="senderCardNumber"]').val();
+      ).validateCreditCard()
+      const senderCardValue = $('input[name="senderCardNumber"]').val()
 
       const isValidSenderCardNum =
-        senderCard?.valid && senderCardValue !== this.value;
+        senderCard?.valid && senderCardValue !== this.value
 
       const isValidReceiverCardNum =
-        receiverCard?.valid && this.value !== senderCardValue;
+        receiverCard?.valid && this.value !== senderCardValue
 
       formData.senderStep.senderCardNumber = {
         value: senderCardValue,
-        valid: isValidSenderCardNum,
-      };
+        valid: isValidSenderCardNum
+      }
 
       formData.receiverStep.receiver = {
         value: this.value,
-        valid: isValidReceiverCardNum,
-      };
+        valid: isValidReceiverCardNum
+      }
 
-      const isSenderCardNumEmpty = !senderCardValue.length;
+      const isSenderCardNumEmpty = !senderCardValue.length
 
-      $('input[name="senderCardNumber"]')
-        .addClass(
-          `${
-            isValidSenderCardNum
-              ? "valid"
-              : !isSenderCardNumEmpty
-              ? "invalid"
-              : ""
-          }`
-        )
-        .removeClass(`${isValidSenderCardNum ? "invalid" : "valid"}`);
+      $('input[name="senderCardNumber"]').addClass(
+        `${
+          isValidSenderCardNum
+            ? 'valid'
+            : !isSenderCardNumEmpty
+              ? 'invalid'
+              : ''
+        }`
+      ).removeClass(`${isValidSenderCardNum ? 'invalid' : 'valid'}`)
 
-      $('input[name="receiver"]')
-        .addClass(`${isValidReceiverCardNum ? "valid" : "invalid"}`)
-        .removeClass(`${isValidReceiverCardNum ? "invalid" : "valid"}`);
+      $('input[name="receiver"]').
+        addClass(`${isValidReceiverCardNum ? 'valid' : 'invalid'}`).
+        removeClass(`${isValidReceiverCardNum ? 'invalid' : 'valid'}`)
 
-      $("#receiverCard i").html(getCardTypeIcon(receiverCard?.card_type?.name));
+      $('#receiverCard i').html(getCardTypeIcon(receiverCard?.card_type?.name))
       $('input[name="receiver"]').each((index, element) => {
-        $(element).val(this.value);
-      });
+        $(element).val(this.value)
+      })
 
-      validateForm();
+      validateForm()
     }
-  );
+  )
 
-  $(".credential-container input").on("focus", function () {
-    $(this).select();
-  });
-});
+  $('.credential-container input').on('focus', function () {
+    $(this).select()
+  })
+})
