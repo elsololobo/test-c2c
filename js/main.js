@@ -240,6 +240,7 @@ const changeActiveDot = (prevIndex, activeIndex) => {
 const swiper = new Swiper('.swiper', {
   allowSlideNext: false,
   centeredSlides: true,
+  speed: 1000,
   longSwipes: false
 })
 
