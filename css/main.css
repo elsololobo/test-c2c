@@ -1469,7 +1469,10 @@ select:invalid option:not(:first-child) {
 .hidden {
   display: none;
 }
-
+/* add mobile loader გადასატანია*/
+.load-mob{
+  left: 20% !important;
+}
 .loader {
   box-sizing: border-box;
   width: 32px;

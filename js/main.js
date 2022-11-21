@@ -224,7 +224,7 @@ const showNextButton = () => {
 
 const disableSubmitButton = () => {
   $('button[name="submitTransfer"]').attr('disabled', true)
-  $('button[name="submitTransfer"]').addClass('btn-disabled')
+  .addClass('btn-disabled')
 }
 
 const enableSubmitButton = () => {
@@ -643,4 +643,27 @@ $(document).ready(function () {
   $('.credential-container input').on('focus', function () {
     $(this).select()
   })
+
+
+  // აქ დაემატა კლასი .text-pay გადასატანია
+  $('button[name="submitTransfer"]').on("click", function () {
+    $('.text-pay').addClass("text-indent");
+    $(".loader").removeClass("hidden");
+
+    if (isValidFormData()) {
+      setTimeout(() => {
+        $(".loader").addClass("hidden");
+        $('.text-pay').removeClass("text-indent");
+        alert("Transfer Successful!");
+      }, 1000);
+    } else {
+      alert("Invalid Data!");
+    }
+  });
+
+  $(".credential-container input").on("focus", function () {
+    $(this).select();
+  });
 })
+
+
