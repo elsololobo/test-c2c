@@ -380,7 +380,9 @@ $(document).ready(function () {
       $('input[name="senderCardNumber"]').each((index, element) => {
         $(element).val(this.value)
       })
-
+      //disabling receiver on invalid sender card
+      if($('input[name="amount"]').val() > 0.01 && isValidSenderCardNum) $('input[name="receiver"]').prop('disabled', false)
+      else $('input[name="receiver"]').prop('disabled', true)
       validateForm()
     }
   )
