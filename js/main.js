@@ -381,7 +381,7 @@ $(document).ready(function () {
         $(element).val(this.value)
       })
       //disabling receiver on invalid sender card
-      if($('input[name="amount"]').val() > 0.01 && isValidSenderCardNum) $('input[name="receiver"]').prop('disabled', false)
+      if($('input[name="amount"]').val() > 0 && isValidSenderCardNum) $('input[name="receiver"]').prop('disabled', false)
       else $('input[name="receiver"]').prop('disabled', true)
       validateForm()
     }
@@ -580,7 +580,7 @@ $(document).ready(function () {
       addClass(`${isValidAmount ? 'valid' : 'invalid'}`).
       removeClass(`${isValidAmount ? 'invalid' : 'valid'}`)
     //disabling receiver input on invalid amount
-    if(this.value > 0.01 && formData.senderStep.senderCardNumber.valid) $('input[name="receiver"]').prop('disabled', false)
+    if(this.value > 0 && formData.senderStep.senderCardNumber.valid) $('input[name="receiver"]').prop('disabled', false)
     else $('input[name="receiver"]').prop('disabled', true)
     validateForm()
   })
