@@ -340,8 +340,7 @@ ul {
 }
 
 .text-indent {
-  /* text-indent: -99999px; */
-  display: none;
+  text-indent: -99999px;
 }
 .btn {
   font-size: 14px !important;
@@ -1471,7 +1470,7 @@ select:invalid option:not(:first-child) {
   display: none;
 }
 /* add mobile loader გადასატანია*/
-.load-mob{
+.load-mob {
   left: 20% !important;
 }
 .loader {
@@ -1483,7 +1482,12 @@ select:invalid option:not(:first-child) {
   background-color: rgba(205, 205, 207, 0.72);
   position: absolute;
   top: 53%;
-  left: 15%;
+  left: 19%;
+}
+@media screen and (min-width: 66rem) {
+  .loader {
+    left: 15%;
+  }
 }
 .loader:before {
   content: "";
