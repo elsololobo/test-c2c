@@ -380,7 +380,9 @@ $(document).ready(function () {
       $('input[name="senderCardNumber"]').each((index, element) => {
         $(element).val(this.value)
       })
-
+      //disabling receiver on invalid sender card
+      if($('input[name="amount"]').val() > 0.01 && isValidSenderCardNum) $('input[name="receiver"]').prop('disabled', false)
+      else $('input[name="receiver"]').prop('disabled', true)
       validateForm()
     }
   )
@@ -417,6 +419,8 @@ $(document).ready(function () {
       removeClass(`${isValidMonth ? 'invalid' : 'valid'}`)
 
     validateForm()
+    //chaining expiry dates
+    isValidMonth && this.value.length === 2 && $( 'input[name="expiry_year"]' ).focus();
   })
 
   $('input[name="expiry_year"]').on('input', function () {
@@ -575,7 +579,9 @@ $(document).ready(function () {
     $('input[name="amount"]').
       addClass(`${isValidAmount ? 'valid' : 'invalid'}`).
       removeClass(`${isValidAmount ? 'invalid' : 'valid'}`)
-
+    //disabling receiver input on invalid amount
+    if(this.value > 0.01 && formData.senderStep.senderCardNumber.valid) $('input[name="receiver"]').prop('disabled', false)
+    else $('input[name="receiver"]').prop('disabled', true)
     validateForm()
   })
 
