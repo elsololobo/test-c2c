@@ -344,8 +344,8 @@ $(document).ready(function () {
       const receiverCardValue = $('input[name="receiver"]').val()
 
       const isValidSenderCardNum =
-        senderCard?.valid &&
-        this.value !== formData.receiverStep.receiver.value
+        senderCard?.valid
+        // this.value !== formData.receiverStep.receiver.value
 
       const isValidReceiverCardNum =
         receiverCard?.valid && receiverCardValue !== this.value
