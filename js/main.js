@@ -223,8 +223,9 @@ const showNextButton = () => {
 }
 
 const disableSubmitButton = () => {
-  $('button[name="submitTransfer"]').attr('disabled', true)
-  .addClass('btn-disabled')
+  $('button[name="submitTransfer"]').
+    attr('disabled', true).
+    addClass('btn-disabled')
 }
 
 const enableSubmitButton = () => {
@@ -342,13 +343,18 @@ $(document).ready(function () {
         'input[name="receiver"]'
       ).validateCreditCard()
       const receiverCardValue = $('input[name="receiver"]').val()
-
       const isValidSenderCardNum =
-        senderCard?.valid
-        // this.value !== formData.receiverStep.receiver.value
+        senderCard?.valid && /^[0-9]{16}$/g.test(
+          this.value.replaceAll(' ', '')
+        )
 
+      // this.value !== formData.receiverStep.receiver.value
+      console.log('receiver', receiverCardValue)
       const isValidReceiverCardNum =
-        receiverCard?.valid && receiverCardValue !== this.value
+        receiverCard?.valid && receiverCardValue !== this.value &&
+        /^[0-9]{16}$/g.test(
+          receiverCardValue.replaceAll(' ', '')
+        )
 
       formData.senderStep.senderCardNumber = {
         value: this.value,
@@ -420,7 +426,8 @@ $(document).ready(function () {
 
     validateForm()
     //chaining expiry dates
-    isValidMonth && this.value.length === 2 && $( 'input[name="expiry_year"]' ).focus();
+    isValidMonth && this.value.length === 2 &&
+    $('input[name="expiry_year"]').focus()
   })
 
   $('input[name="expiry_year"]').on('input', function () {
@@ -606,10 +613,15 @@ $(document).ready(function () {
       const senderCardValue = $('input[name="senderCardNumber"]').val()
 
       const isValidSenderCardNum =
-        senderCard?.valid || senderCardValue === this.value
-
+        senderCard?.valid && /^[0-9]{16}$/g.test(
+          senderCardValue.replaceAll(' ', '')
+        )
       const isValidReceiverCardNum =
-        receiverCard?.valid && this.value !== senderCardValue
+        receiverCard?.valid && this.value !== senderCardValue &&
+        /^[0-9]{16}$/g.test(
+          this.value.replaceAll(' ', '')
+        )
+
 
       formData.senderStep.senderCardNumber = {
         value: senderCardValue,
@@ -650,26 +662,25 @@ $(document).ready(function () {
     $(this).select()
   })
 
-
   // აქ დაემატა კლასი .text-pay გადასატანია
-  $('button[name="submitTransfer"]').on("click", function () {
-    $('.text-pay').addClass("text-indent");
-    $(".loader").removeClass("hidden");
+  $('button[name="submitTransfer"]').on('click', function () {
+    $('.text-pay').addClass('text-indent')
+    $('.loader').removeClass('hidden')
 
     if (isValidFormData()) {
       setTimeout(() => {
-        $(".loader").addClass("hidden");
-        $('.text-pay').removeClass("text-indent");
-        alert("Transfer Successful!");
-      }, 1000);
+        $('.loader').addClass('hidden')
+        $('.text-pay').removeClass('text-indent')
+        alert('Transfer Successful!')
+      }, 1000)
     } else {
-      alert("Invalid Data!");
+      alert('Invalid Data!')
     }
-  });
+  })
 
-  $(".credential-container input").on("focus", function () {
-    $(this).select();
-  });
+  $('.credential-container input').on('focus', function () {
+    $(this).select()
+  })
 })
 
 

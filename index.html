@@ -1,25 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1"
-    />
-    <title>Pay.ge</title>
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+  />
+  <title>Pay.ge</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+</head>
 
-  <body>
-    <!-- web browser -->
-    <div class="d-none d-block-md">
-      <div class="credential-container">
-        <!-- first block card-block-from -->
+<body>
+<!-- web browser -->
+<div class="d-none d-block-md">
+  <div class="credential-container">
+    <!-- first block card-block-from -->
+    <div class="card-block-from">
+      <img src="images/card-bg.png" alt="" class="card-bg-1 card-decor" />
+      <!-- <div class="card-decor"></div> -->
+      <div class="from-card-container">
+        <h3 class="productive-heading-03 is-white">ბარათიდან</h3>
+        <div id="senderCard" class="form-group mt-16">
+          <label class="label-01 is-white">ბარათის ნომერი</label>
+          <div class="pa-text-input__field-outer-wrapper">
+            <div class="pa-text-input__field-wrapper">
+              <i class="icn pa-input-checkmark-filled-icon"> </i>
+              <input
+                      type="text"
+                      maxlength="19"
+                      class="pa-text-input"
+                      name="senderCardNumber"
+                      placeholder="ბარათის 16-ნიშნა ნომერი"
+                      autocomplete="senderCardNumber"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="security-container mt-16">
+          <div>
+            <label class="label-01 is-white">თვე</label>
+            <input
+                    type="text"
+                    name="expiry_month"
+                    id="month"
+                    class="pa-text-input"
+                    placeholder="MM"
+                    maxlength="2"
+                    autocomplete="month"
+            />
+          </div>
+          <div>
+            <label class="label-01 is-white">წელი</label>
+            <input
+                    type="text"
+                    name="expiry_year"
+                    id="expiry_year"
+                    class="pa-text-input"
+                    placeholder="YY"
+                    maxlength="2"
+                    autocomplete="expiry_year"
+            />
+          </div>
+          <div>
+            <label class="label-01 is-white">CVV2</label>
+            <div class="pa-text-input__field-outer-wrapper">
+              <div class="pa-text-input__field-wrapper">
+                <i
+                        class="icn pa-input-symbol-icon"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="შეიყვანეთ ბარათის უკან მოთავსებული 3 ნიშნა კოდი"
+                >
+                  <svg
+                          width="20px"
+                          height="20px"
+                          viewBox="0 0 20 20"
+                          version="1.1"
+                          xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Organization / Status / information / 20</title>
+                    <g
+                            id="Icons"
+                            stroke="none"
+                            stroke-width="1"
+                            fill="none"
+                            fill-rule="evenodd"
+                    >
+                      <g
+                              id="Organization-/-Status-/-information-/-20"
+                              fill="#6F6F6F"
+                      >
+                        <path
+                                d="M10.625,13.75 L10.625,8.75 L8.125,8.75 L8.125,10 L9.375,10 L9.375,13.75 L7.5,13.75 L7.5,15 L12.5,15 L12.5,13.75 L10.625,13.75 L10.625,13.75 Z M10,5 C9.48223305,5 9.0625,5.41973305 9.0625,5.9375 C9.0625,6.45526695 9.48223305,6.875 10,6.875 C10.517767,6.875 10.9375,6.45526695 10.9375,5.9375 C10.9375,5.41973305 10.517767,5 10,5 Z M10,18.75 C5.16750844,18.75 1.25,14.8324916 1.25,10 C1.25,5.16750844 5.16750844,1.25 10,1.25 C14.8324916,1.25 18.75,5.16750844 18.75,10 C18.75,12.3206443 17.8281276,14.546241 16.1871843,16.1871843 C14.546241,17.8281276 12.3206443,18.75 10,18.75 Z M10,2.5 C5.85786438,2.5 2.5,5.85786438 2.5,10 C2.5,14.1421356 5.85786438,17.5 10,17.5 C14.1421356,17.5 17.5,14.1421356 17.5,10 C17.5,5.85786438 14.1421356,2.5 10,2.5 Z"
+                                id="Fill"
+                        ></path>
+                      </g>
+                    </g>
+                  </svg>
+                  <div class="tooltip tooltip-top">Filter</div>
+                </i>
+
+                <input
+                        type="text"
+                        class="pa-text-input"
+                        placeholder="CVV2"
+                        name="cvv"
+                        maxlength="3"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- second block enter-amount -->
+    <div class="enter-amount">
+      <div class="form-group">
+        <label class="label-01">ჩაწერე თანხა</label>
+        <div class="pa-text-input__field-outer-wrapper">
+          <div class="pa-text-input__field-wrapper">
+            <i class="icn pa-input-symbol-icon">
+              <svg
+                      width="16px"
+                      height="16px"
+                      viewBox="0 0 16 16"
+                      version="1.1"
+                      xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Enterprise / Commerce / currency--gel / 16</title>
+                <g
+                        id="Icons"
+                        stroke="none"
+                        stroke-width="1"
+                        fill="none"
+                        fill-rule="evenodd"
+                >
+                  <g
+                          id="₾"
+                          fill="currentcolor"
+                          transform="translate(2.500000, 2.000000)"
+                  >
+                    <path
+                            d="M2.55248619,11.025 L0.288674033,11.025 L0.288674033,12 L10.4378453,12 L10.4378453,10.98 L5.5,10.98 C3.00828729,10.98 1.06353591,9 1.06353591,6.66 C1.06353591,4.8 2.23342541,3.24 3.90469613,2.625 L3.90469613,6.75 L4.81629834,6.75 L4.81629834,2.385 C5.0441989,2.355 5.27209945,2.34 5.5,2.34 C5.72790055,2.34 5.9558011,2.355 6.18370166,2.385 L6.18370166,6.75 L7.09530387,6.75 L7.09530387,2.625 C8.78176796,3.255 9.93646409,4.86 9.93646409,6.75 L11,6.75 C11,4.29 9.38950276,2.22 7.09530387,1.545 L7.09530387,0 L6.18370166,0 L6.18370166,1.365 C5.9558011,1.335 5.72790055,1.32 5.5,1.32 C5.27209945,1.32 5.0441989,1.335 4.81629834,1.365 L4.81629834,0 L3.90469613,0 L3.90469613,1.545 C1.67127072,2.19 0,4.245 0,6.66 C0,8.52 0.92679558,10.155 2.55248619,11.025 Z"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </i>
+            <input
+                    type="text"
+                    maxlength="8"
+                    class="pa-text-input"
+                    placeholder="0.00"
+                    autocomplete="off"
+                    name="amount"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="commission-rules pt-10">
+        <div class="flex body-short-02 is-grey">
+          <span> საკომისიო</span>
+          <i
+                  class="icn pl-4 po-r"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  data-bs-html="true"
+                  title="<ul><li> 50 ლარამდე 0₾</li> <li> 50 ლარის ზევით 0.9% მინ 0.90₾ </li></ul>"
+          >
+            <svg
+                    width="20px"
+                    height="20px"
+                    viewBox="0 0 20 20"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Organization / Status / information / 20</title>
+              <g
+                      id="Icons"
+                      stroke="none"
+                      stroke-width="1"
+                      fill="none"
+                      fill-rule="evenodd"
+              >
+                <g
+                        id="Organization-/-Status-/-information-/-20"
+                        fill="#6F6F6F"
+                >
+                  <path
+                          d="M10.625,13.75 L10.625,8.75 L8.125,8.75 L8.125,10 L9.375,10 L9.375,13.75 L7.5,13.75 L7.5,15 L12.5,15 L12.5,13.75 L10.625,13.75 L10.625,13.75 Z M10,5 C9.48223305,5 9.0625,5.41973305 9.0625,5.9375 C9.0625,6.45526695 9.48223305,6.875 10,6.875 C10.517767,6.875 10.9375,6.45526695 10.9375,5.9375 C10.9375,5.41973305 10.517767,5 10,5 Z M10,18.75 C5.16750844,18.75 1.25,14.8324916 1.25,10 C1.25,5.16750844 5.16750844,1.25 10,1.25 C14.8324916,1.25 18.75,5.16750844 18.75,10 C18.75,12.3206443 17.8281276,14.546241 16.1871843,16.1871843 C14.546241,17.8281276 12.3206443,18.75 10,18.75 Z M10,2.5 C5.85786438,2.5 2.5,5.85786438 2.5,10 C2.5,14.1421356 5.85786438,17.5 10,17.5 C14.1421356,17.5 17.5,14.1421356 17.5,10 C17.5,5.85786438 14.1421356,2.5 10,2.5 Z"
+                          id="Fill"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </i>
+        </div>
+        <div class="body-short-02">0.00 ₾</div>
+      </div>
+    </div>
+
+    <!-- arrow -->
+    <i class="icn icn-arrow--right">
+      <svg
+              width="12px"
+              height="20px"
+              viewBox="0 0 12 20"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>Actions / Navigation / arrow--right / 24</title>
+        <g
+                id="ბარათიდან-ბარათზე---done"
+                stroke="none"
+                stroke-width="1"
+                fill="none"
+                fill-rule="evenodd"
+        >
+          <g
+                  id="ბარათიდან-ბარათზე-გადარიცხვა-3"
+                  transform="translate(-1115.000000, -648.000000)"
+                  fill="currentcolor"
+          >
+            <g id="Group" transform="translate(336.000000, -373.000000)">
+              <g id="Group-3" transform="translate(0.000000, 776.000000)">
+                <g id="Group-2" transform="translate(0.000000, 120.000000)">
+                  <g id="Group" transform="translate(768.000000, 0.000000)">
+                    <g
+                            transform="translate(0.000000, 119.000000)"
+                            id="Actions-/-Navigation-/-arrow--right-/-24"
+                    >
+                      <polygon
+                              id="Fill"
+                              points="23 16 13 26 11.6 24.6 20.2 16 11.6 7.4 13 6"
+                      ></polygon>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </i>
+
+    <!-- third block card-block -->
+    <div class="card-block">
+      <img src="images/card-bg-2.svg" alt="" />
+      <div class="on-card-container">
+        <h3 class="productive-heading-03">ბარათზე</h3>
+        <div id="receiverCard" class="form-group mt-16">
+          <label class="label-01">ბარათის ნომერი</label>
+          <div class="pa-text-input__field-outer-wrapper">
+            <div class="pa-text-input__field-wrapper">
+              <i class="icn pa-input-checkmark-filled-icon"> </i>
+              <input
+                      type="text"
+                      maxlength="19"
+                      class="pa-text-input"
+                      placeholder="ბარათის 16-ნიშნა ნომერი"
+                      name="receiver"
+
+              />
+            </div>
+          </div>
+        </div>
+        <!-- TODO:როცა ლოადერი დამეატება ტექსტი უნდა გაქრეს ღილაკზე და დაემტაოს ეს კლასი "text-indent"-->
+        <div class="po-r">
+          <button
+                  class="btn btn-default btn-primary btn-disabled mt-10 btn-pay"
+                  name="submitTransfer"
+                  disabled
+          >
+            <!-- ეს მობაილზე დაემატა და გადასატანია -->
+            <span class="text-pay"> გადარიცხვა</span>
+          </button>
+          <!-- TODO: loader state-->
+          <div class="loader"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- mobile -->
+<div class="d-block d-none-md">
+  <div class="swiper credential-container mobile-view">
+    <!-- slider -->
+    <div class="swiper-wrapper">
+      <!-- first block card-block-from -->
+      <div class="swiper-slide">
         <div class="card-block-from">
-          <img src="images/card-bg.png" alt="" class="card-bg-1 card-decor" />
-          <!-- <div class="card-decor"></div> -->
+          <img
+                  src="images/card-bg.png"
+                  alt=""
+                  class="card-bg-1 card-decor"
+          />
           <div class="from-card-container">
             <h3 class="productive-heading-03 is-white">ბარათიდან</h3>
             <div id="senderCard" class="form-group mt-16">
@@ -28,12 +307,11 @@
                 <div class="pa-text-input__field-wrapper">
                   <i class="icn pa-input-checkmark-filled-icon"> </i>
                   <input
-                    type="text"
-                    maxlength="19"
-                    class="pa-text-input"
-                    name="senderCardNumber"
-                    placeholder="ბარათის 16-ნიშნა ნომერი"
-                    autocomplete="senderCardNumber"
+                          type="text"
+                          maxlength="19"
+                          class="pa-text-input"
+                          name="senderCardNumber"
+                          placeholder="ბარათის 16-ნიშნა ნომერი"
                   />
                 </div>
               </div>
@@ -42,25 +320,23 @@
               <div>
                 <label class="label-01 is-white">თვე</label>
                 <input
-                  type="text"
-                  name="expiry_month"
-                  id="month"
-                  class="pa-text-input"
-                  placeholder="MM"
-                  maxlength="2"
-                  autocomplete="month"
+                        type="text"
+                        name="expiry_month"
+                        id="month"
+                        class="pa-text-input"
+                        placeholder="MM"
+                        maxlength="2"
                 />
               </div>
               <div>
                 <label class="label-01 is-white">წელი</label>
                 <input
-                  type="text"
-                  name="expiry_year"
-                  id="expiry_year"
-                  class="pa-text-input"
-                  placeholder="YY"
-                  maxlength="2"
-                  autocomplete="expiry_year"
+                        type="text"
+                        name="expiry_year"
+                        id="expiry_year"
+                        class="pa-text-input"
+                        placeholder="YY"
+                        maxlength="2"
                 />
               </div>
               <div>
@@ -68,46 +344,46 @@
                 <div class="pa-text-input__field-outer-wrapper">
                   <div class="pa-text-input__field-wrapper">
                     <i
-                      class="icn pa-input-symbol-icon"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="შეიყვანეთ ბარათის უკან მოთავსებული 3 ნიშნა კოდი"
+                            class="icn pa-input-symbol-icon"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="შეიყვანეთ ბარათის უკან მოთავსებული 3 ნიშნა კოდი"
                     >
                       <svg
-                        width="20px"
-                        height="20px"
-                        viewBox="0 0 20 20"
-                        version="1.1"
-                        xmlns="http://www.w3.org/2000/svg"
+                              width="20px"
+                              height="20px"
+                              viewBox="0 0 20 20"
+                              version="1.1"
+                              xmlns="http://www.w3.org/2000/svg"
                       >
-                        <title>Organization / Status / information / 20</title>
+                        <title>
+                          Organization / Status / information / 20
+                        </title>
                         <g
-                          id="Icons"
-                          stroke="none"
-                          stroke-width="1"
-                          fill="none"
-                          fill-rule="evenodd"
+                                id="Icons"
+                                stroke="none"
+                                stroke-width="1"
+                                fill="none"
+                                fill-rule="evenodd"
                         >
                           <g
-                            id="Organization-/-Status-/-information-/-20"
-                            fill="#6F6F6F"
+                                  id="Organization-/-Status-/-information-/-20"
+                                  fill="#6F6F6F"
                           >
                             <path
-                              d="M10.625,13.75 L10.625,8.75 L8.125,8.75 L8.125,10 L9.375,10 L9.375,13.75 L7.5,13.75 L7.5,15 L12.5,15 L12.5,13.75 L10.625,13.75 L10.625,13.75 Z M10,5 C9.48223305,5 9.0625,5.41973305 9.0625,5.9375 C9.0625,6.45526695 9.48223305,6.875 10,6.875 C10.517767,6.875 10.9375,6.45526695 10.9375,5.9375 C10.9375,5.41973305 10.517767,5 10,5 Z M10,18.75 C5.16750844,18.75 1.25,14.8324916 1.25,10 C1.25,5.16750844 5.16750844,1.25 10,1.25 C14.8324916,1.25 18.75,5.16750844 18.75,10 C18.75,12.3206443 17.8281276,14.546241 16.1871843,16.1871843 C14.546241,17.8281276 12.3206443,18.75 10,18.75 Z M10,2.5 C5.85786438,2.5 2.5,5.85786438 2.5,10 C2.5,14.1421356 5.85786438,17.5 10,17.5 C14.1421356,17.5 17.5,14.1421356 17.5,10 C17.5,5.85786438 14.1421356,2.5 10,2.5 Z"
-                              id="Fill"
+                                    d="M10.625,13.75 L10.625,8.75 L8.125,8.75 L8.125,10 L9.375,10 L9.375,13.75 L7.5,13.75 L7.5,15 L12.5,15 L12.5,13.75 L10.625,13.75 L10.625,13.75 Z M10,5 C9.48223305,5 9.0625,5.41973305 9.0625,5.9375 C9.0625,6.45526695 9.48223305,6.875 10,6.875 C10.517767,6.875 10.9375,6.45526695 10.9375,5.9375 C10.9375,5.41973305 10.517767,5 10,5 Z M10,18.75 C5.16750844,18.75 1.25,14.8324916 1.25,10 C1.25,5.16750844 5.16750844,1.25 10,1.25 C14.8324916,1.25 18.75,5.16750844 18.75,10 C18.75,12.3206443 17.8281276,14.546241 16.1871843,16.1871843 C14.546241,17.8281276 12.3206443,18.75 10,18.75 Z M10,2.5 C5.85786438,2.5 2.5,5.85786438 2.5,10 C2.5,14.1421356 5.85786438,17.5 10,17.5 C14.1421356,17.5 17.5,14.1421356 17.5,10 C17.5,5.85786438 14.1421356,2.5 10,2.5 Z"
+                                    id="Fill"
                             ></path>
                           </g>
                         </g>
                       </svg>
-                      <div class="tooltip tooltip-top">Filter</div>
                     </i>
-
                     <input
-                      type="text"
-                      class="pa-text-input"
-                      placeholder="CVV2"
-                      name="cvv"
-                      maxlength="3"
+                            type="text"
+                            class="pa-text-input"
+                            placeholder=""
+                            name="cvv"
+                            maxlength="3"
                     />
                   </div>
                 </div>
@@ -115,8 +391,10 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- second block enter-amount -->
+      <!-- second block enter-amount -->
+      <div class="swiper-slide">
         <div class="enter-amount">
           <div class="form-group">
             <label class="label-01">ჩაწერე თანხა</label>
@@ -124,75 +402,79 @@
               <div class="pa-text-input__field-wrapper">
                 <i class="icn pa-input-symbol-icon">
                   <svg
-                    width="16px"
-                    height="16px"
-                    viewBox="0 0 16 16"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
+                          width="16px"
+                          height="16px"
+                          viewBox="0 0 16 16"
+                          version="1.1"
+                          xmlns="http://www.w3.org/2000/svg"
                   >
-                    <title>Enterprise / Commerce / currency--gel / 16</title>
+                    <title>
+                      Enterprise / Commerce / currency--gel / 16
+                    </title>
                     <g
-                      id="Icons"
-                      stroke="none"
-                      stroke-width="1"
-                      fill="none"
-                      fill-rule="evenodd"
+                            id="Icons"
+                            stroke="none"
+                            stroke-width="1"
+                            fill="none"
+                            fill-rule="evenodd"
                     >
                       <g
-                        id="₾"
-                        fill="currentcolor"
-                        transform="translate(2.500000, 2.000000)"
+                              id="₾"
+                              fill="currentcolor"
+                              transform="translate(2.500000, 2.000000)"
                       >
                         <path
-                          d="M2.55248619,11.025 L0.288674033,11.025 L0.288674033,12 L10.4378453,12 L10.4378453,10.98 L5.5,10.98 C3.00828729,10.98 1.06353591,9 1.06353591,6.66 C1.06353591,4.8 2.23342541,3.24 3.90469613,2.625 L3.90469613,6.75 L4.81629834,6.75 L4.81629834,2.385 C5.0441989,2.355 5.27209945,2.34 5.5,2.34 C5.72790055,2.34 5.9558011,2.355 6.18370166,2.385 L6.18370166,6.75 L7.09530387,6.75 L7.09530387,2.625 C8.78176796,3.255 9.93646409,4.86 9.93646409,6.75 L11,6.75 C11,4.29 9.38950276,2.22 7.09530387,1.545 L7.09530387,0 L6.18370166,0 L6.18370166,1.365 C5.9558011,1.335 5.72790055,1.32 5.5,1.32 C5.27209945,1.32 5.0441989,1.335 4.81629834,1.365 L4.81629834,0 L3.90469613,0 L3.90469613,1.545 C1.67127072,2.19 0,4.245 0,6.66 C0,8.52 0.92679558,10.155 2.55248619,11.025 Z"
+                                d="M2.55248619,11.025 L0.288674033,11.025 L0.288674033,12 L10.4378453,12 L10.4378453,10.98 L5.5,10.98 C3.00828729,10.98 1.06353591,9 1.06353591,6.66 C1.06353591,4.8 2.23342541,3.24 3.90469613,2.625 L3.90469613,6.75 L4.81629834,6.75 L4.81629834,2.385 C5.0441989,2.355 5.27209945,2.34 5.5,2.34 C5.72790055,2.34 5.9558011,2.355 6.18370166,2.385 L6.18370166,6.75 L7.09530387,6.75 L7.09530387,2.625 C8.78176796,3.255 9.93646409,4.86 9.93646409,6.75 L11,6.75 C11,4.29 9.38950276,2.22 7.09530387,1.545 L7.09530387,0 L6.18370166,0 L6.18370166,1.365 C5.9558011,1.335 5.72790055,1.32 5.5,1.32 C5.27209945,1.32 5.0441989,1.335 4.81629834,1.365 L4.81629834,0 L3.90469613,0 L3.90469613,1.545 C1.67127072,2.19 0,4.245 0,6.66 C0,8.52 0.92679558,10.155 2.55248619,11.025 Z"
                         ></path>
                       </g>
                     </g>
                   </svg>
                 </i>
                 <input
-                  type="text"
-                  maxlength="8"
-                  class="pa-text-input"
-                  placeholder="0.00"
-                  autocomplete="off"
-                  name="amount"
+                        type="text"
+                        maxlength="8"
+                        class="pa-text-input"
+                        placeholder="0.00"
+                        autocomplete="off"
+                        name="amount"
+                        tabindex="-1"
                 />
               </div>
             </div>
           </div>
-          <div class="commission-rules pt-10">
+          <div class="commission-rules pt-18">
             <div class="flex body-short-02 is-grey">
               <span> საკომისიო</span>
+              <!-- TODO:აქ დაემატა tooltip-ს data-bs-html="true" -->
               <i
-                class="icn pl-4 po-r"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-                data-bs-html="true"
-                title="<ul><li> 50 ლარამდე 0₾</li> <li> 50 ლარის ზევით 0.9% მინ 0.90₾ </li></ul>"
+                      class="icn pl-4"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      data-bs-html="true"
+                      title="<ul><li> 50 ლარამდე 0₾</li> <li> 50 ლარის ზევით 0.9% მინ 0.90₾ </li></ul>"
               >
                 <svg
-                  width="20px"
-                  height="20px"
-                  viewBox="0 0 20 20"
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
+                        width=" 20px"
+                        height="20px"
+                        viewBox="0 0 20 20"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
                 >
                   <title>Organization / Status / information / 20</title>
                   <g
-                    id="Icons"
-                    stroke="none"
-                    stroke-width="1"
-                    fill="none"
-                    fill-rule="evenodd"
+                          id="Icons"
+                          stroke="none"
+                          stroke-width="1"
+                          fill="none"
+                          fill-rule="evenodd"
                   >
                     <g
-                      id="Organization-/-Status-/-information-/-20"
-                      fill="#6F6F6F"
+                            id="Organization-/-Status-/-information-/-20"
+                            fill="#6F6F6F"
                     >
                       <path
-                        d="M10.625,13.75 L10.625,8.75 L8.125,8.75 L8.125,10 L9.375,10 L9.375,13.75 L7.5,13.75 L7.5,15 L12.5,15 L12.5,13.75 L10.625,13.75 L10.625,13.75 Z M10,5 C9.48223305,5 9.0625,5.41973305 9.0625,5.9375 C9.0625,6.45526695 9.48223305,6.875 10,6.875 C10.517767,6.875 10.9375,6.45526695 10.9375,5.9375 C10.9375,5.41973305 10.517767,5 10,5 Z M10,18.75 C5.16750844,18.75 1.25,14.8324916 1.25,10 C1.25,5.16750844 5.16750844,1.25 10,1.25 C14.8324916,1.25 18.75,5.16750844 18.75,10 C18.75,12.3206443 17.8281276,14.546241 16.1871843,16.1871843 C14.546241,17.8281276 12.3206443,18.75 10,18.75 Z M10,2.5 C5.85786438,2.5 2.5,5.85786438 2.5,10 C2.5,14.1421356 5.85786438,17.5 10,17.5 C14.1421356,17.5 17.5,14.1421356 17.5,10 C17.5,5.85786438 14.1421356,2.5 10,2.5 Z"
-                        id="Fill"
+                              d="M10.625,13.75 L10.625,8.75 L8.125,8.75 L8.125,10 L9.375,10 L9.375,13.75 L7.5,13.75 L7.5,15 L12.5,15 L12.5,13.75 L10.625,13.75 L10.625,13.75 Z M10,5 C9.48223305,5 9.0625,5.41973305 9.0625,5.9375 C9.0625,6.45526695 9.48223305,6.875 10,6.875 C10.517767,6.875 10.9375,6.45526695 10.9375,5.9375 C10.9375,5.41973305 10.517767,5 10,5 Z M10,18.75 C5.16750844,18.75 1.25,14.8324916 1.25,10 C1.25,5.16750844 5.16750844,1.25 10,1.25 C14.8324916,1.25 18.75,5.16750844 18.75,10 C18.75,12.3206443 17.8281276,14.546241 16.1871843,16.1871843 C14.546241,17.8281276 12.3206443,18.75 10,18.75 Z M10,2.5 C5.85786438,2.5 2.5,5.85786438 2.5,10 C2.5,14.1421356 5.85786438,17.5 10,17.5 C14.1421356,17.5 17.5,14.1421356 17.5,10 C17.5,5.85786438 14.1421356,2.5 10,2.5 Z"
+                              id="Fill"
                       ></path>
                     </g>
                   </g>
@@ -202,54 +484,11 @@
             <div class="body-short-02">0.00 ₾</div>
           </div>
         </div>
+      </div>
 
-        <!-- arrow -->
-        <i class="icn icn-arrow--right">
-          <svg
-            width="12px"
-            height="20px"
-            viewBox="0 0 12 20"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Actions / Navigation / arrow--right / 24</title>
-            <g
-              id="ბარათიდან-ბარათზე---done"
-              stroke="none"
-              stroke-width="1"
-              fill="none"
-              fill-rule="evenodd"
-            >
-              <g
-                id="ბარათიდან-ბარათზე-გადარიცხვა-3"
-                transform="translate(-1115.000000, -648.000000)"
-                fill="currentcolor"
-              >
-                <g id="Group" transform="translate(336.000000, -373.000000)">
-                  <g id="Group-3" transform="translate(0.000000, 776.000000)">
-                    <g id="Group-2" transform="translate(0.000000, 120.000000)">
-                      <g id="Group" transform="translate(768.000000, 0.000000)">
-                        <g
-                          transform="translate(0.000000, 119.000000)"
-                          id="Actions-/-Navigation-/-arrow--right-/-24"
-                        >
-                          <polygon
-                            id="Fill"
-                            points="23 16 13 26 11.6 24.6 20.2 16 11.6 7.4 13 6"
-                          ></polygon>
-                        </g>
-                      </g>
-                    </g>
-                  </g>
-                </g>
-              </g>
-            </g>
-          </svg>
-        </i>
-
-        <!-- third block card-block -->
+      <!-- third block card-block -->
+      <div class="swiper-slide">
         <div class="card-block">
-          <img src="images/card-bg-2.svg" alt="" />
           <div class="on-card-container">
             <h3 class="productive-heading-03">ბარათზე</h3>
             <div id="receiverCard" class="form-group mt-16">
@@ -258,22 +497,23 @@
                 <div class="pa-text-input__field-wrapper">
                   <i class="icn pa-input-checkmark-filled-icon"> </i>
                   <input
-                    type="text"
-                    maxlength="19"
-                    class="pa-text-input"
-                    placeholder="ბარათის 16-ნიშნა ნომერი"
-                    name="receiver"
-
+                          type="text"
+                          maxlength="19"
+                          class="pa-text-input"
+                          placeholder="ბარათის 16-ნიშნა ნომერი"
+                          name="receiver"
+                          tabindex="-1"
                   />
                 </div>
               </div>
             </div>
+
             <!-- TODO:როცა ლოადერი დამეატება ტექსტი უნდა გაქრეს ღილაკზე და დაემტაოს ეს კლასი "text-indent"-->
             <div class="po-r">
               <button
-                class="btn btn-default btn-primary btn-disabled mt-10 btn-pay"
-                name="submitTransfer"
-                disabled
+                      class="btn btn-default btn-primary btn-disabled btn-md mt-10 btn-pay"
+                      name="submitTransfer"
+                      disabled
               >
                 <!-- ეს მობაილზე დაემატა და გადასატანია -->
                 <span class="text-pay"> გადარიცხვა</span>
@@ -286,275 +526,35 @@
       </div>
     </div>
 
-    <!-- mobile -->
-    <div class="d-block d-none-md">
-      <div class="swiper credential-container mobile-view">
-        <!-- slider -->
-        <div class="swiper-wrapper">
-          <!-- first block card-block-from -->
-          <div class="swiper-slide">
-            <div class="card-block-from">
-              <img
-                src="images/card-bg.png"
-                alt=""
-                class="card-bg-1 card-decor"
-              />
-              <div class="from-card-container">
-                <h3 class="productive-heading-03 is-white">ბარათიდან</h3>
-                <div id="senderCard" class="form-group mt-16">
-                  <label class="label-01 is-white">ბარათის ნომერი</label>
-                  <div class="pa-text-input__field-outer-wrapper">
-                    <div class="pa-text-input__field-wrapper">
-                      <i class="icn pa-input-checkmark-filled-icon"> </i>
-                      <input
-                        type="text"
-                        maxlength="19"
-                        class="pa-text-input"
-                        name="senderCardNumber"
-                        placeholder="ბარათის 16-ნიშნა ნომერი"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="security-container mt-16">
-                  <div>
-                    <label class="label-01 is-white">თვე</label>
-                    <input
-                      type="text"
-                      name="expiry_month"
-                      id="month"
-                      class="pa-text-input"
-                      placeholder="MM"
-                      maxlength="2"
-                    />
-                  </div>
-                  <div>
-                    <label class="label-01 is-white">წელი</label>
-                    <input
-                      type="text"
-                      name="expiry_year"
-                      id="expiry_year"
-                      class="pa-text-input"
-                      placeholder="YY"
-                      maxlength="2"
-                    />
-                  </div>
-                  <div>
-                    <label class="label-01 is-white">CVV2</label>
-                    <div class="pa-text-input__field-outer-wrapper">
-                      <div class="pa-text-input__field-wrapper">
-                        <i
-                          class="icn pa-input-symbol-icon"
-                          data-bs-toggle="tooltip"
-                          data-bs-placement="top"
-                          title="შეიყვანეთ ბარათის უკან მოთავსებული 3 ნიშნა კოდი"
-                        >
-                          <svg
-                            width="20px"
-                            height="20px"
-                            viewBox="0 0 20 20"
-                            version="1.1"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <title>
-                              Organization / Status / information / 20
-                            </title>
-                            <g
-                              id="Icons"
-                              stroke="none"
-                              stroke-width="1"
-                              fill="none"
-                              fill-rule="evenodd"
-                            >
-                              <g
-                                id="Organization-/-Status-/-information-/-20"
-                                fill="#6F6F6F"
-                              >
-                                <path
-                                  d="M10.625,13.75 L10.625,8.75 L8.125,8.75 L8.125,10 L9.375,10 L9.375,13.75 L7.5,13.75 L7.5,15 L12.5,15 L12.5,13.75 L10.625,13.75 L10.625,13.75 Z M10,5 C9.48223305,5 9.0625,5.41973305 9.0625,5.9375 C9.0625,6.45526695 9.48223305,6.875 10,6.875 C10.517767,6.875 10.9375,6.45526695 10.9375,5.9375 C10.9375,5.41973305 10.517767,5 10,5 Z M10,18.75 C5.16750844,18.75 1.25,14.8324916 1.25,10 C1.25,5.16750844 5.16750844,1.25 10,1.25 C14.8324916,1.25 18.75,5.16750844 18.75,10 C18.75,12.3206443 17.8281276,14.546241 16.1871843,16.1871843 C14.546241,17.8281276 12.3206443,18.75 10,18.75 Z M10,2.5 C5.85786438,2.5 2.5,5.85786438 2.5,10 C2.5,14.1421356 5.85786438,17.5 10,17.5 C14.1421356,17.5 17.5,14.1421356 17.5,10 C17.5,5.85786438 14.1421356,2.5 10,2.5 Z"
-                                  id="Fill"
-                                ></path>
-                              </g>
-                            </g>
-                          </svg>
-                        </i>
-                        <input
-                          type="text"
-                          class="pa-text-input"
-                          placeholder=""
-                          name="cvv"
-                          maxlength="3"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- second block enter-amount -->
-          <div class="swiper-slide">
-            <div class="enter-amount">
-              <div class="form-group">
-                <label class="label-01">ჩაწერე თანხა</label>
-                <div class="pa-text-input__field-outer-wrapper">
-                  <div class="pa-text-input__field-wrapper">
-                    <i class="icn pa-input-symbol-icon">
-                      <svg
-                        width="16px"
-                        height="16px"
-                        viewBox="0 0 16 16"
-                        version="1.1"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <title>
-                          Enterprise / Commerce / currency--gel / 16
-                        </title>
-                        <g
-                          id="Icons"
-                          stroke="none"
-                          stroke-width="1"
-                          fill="none"
-                          fill-rule="evenodd"
-                        >
-                          <g
-                            id="₾"
-                            fill="currentcolor"
-                            transform="translate(2.500000, 2.000000)"
-                          >
-                            <path
-                              d="M2.55248619,11.025 L0.288674033,11.025 L0.288674033,12 L10.4378453,12 L10.4378453,10.98 L5.5,10.98 C3.00828729,10.98 1.06353591,9 1.06353591,6.66 C1.06353591,4.8 2.23342541,3.24 3.90469613,2.625 L3.90469613,6.75 L4.81629834,6.75 L4.81629834,2.385 C5.0441989,2.355 5.27209945,2.34 5.5,2.34 C5.72790055,2.34 5.9558011,2.355 6.18370166,2.385 L6.18370166,6.75 L7.09530387,6.75 L7.09530387,2.625 C8.78176796,3.255 9.93646409,4.86 9.93646409,6.75 L11,6.75 C11,4.29 9.38950276,2.22 7.09530387,1.545 L7.09530387,0 L6.18370166,0 L6.18370166,1.365 C5.9558011,1.335 5.72790055,1.32 5.5,1.32 C5.27209945,1.32 5.0441989,1.335 4.81629834,1.365 L4.81629834,0 L3.90469613,0 L3.90469613,1.545 C1.67127072,2.19 0,4.245 0,6.66 C0,8.52 0.92679558,10.155 2.55248619,11.025 Z"
-                            ></path>
-                          </g>
-                        </g>
-                      </svg>
-                    </i>
-                    <input
-                      type="text"
-                      maxlength="8"
-                      class="pa-text-input"
-                      placeholder="0.00"
-                      autocomplete="off"
-                      name="amount"
-                      tabindex="-1"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="commission-rules pt-18">
-                <div class="flex body-short-02 is-grey">
-                  <span> საკომისიო</span>
-                  <!-- TODO:აქ დაემატა tooltip-ს data-bs-html="true" -->
-                  <i
-                    class="icn pl-4"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    data-bs-html="true"
-                    title="<ul><li> 50 ლარამდე 0₾</li> <li> 50 ლარის ზევით 0.9% მინ 0.90₾ </li></ul>"
-                  >
-                    <svg
-                      width=" 20px"
-                      height="20px"
-                      viewBox="0 0 20 20"
-                      version="1.1"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <title>Organization / Status / information / 20</title>
-                      <g
-                        id="Icons"
-                        stroke="none"
-                        stroke-width="1"
-                        fill="none"
-                        fill-rule="evenodd"
-                      >
-                        <g
-                          id="Organization-/-Status-/-information-/-20"
-                          fill="#6F6F6F"
-                        >
-                          <path
-                            d="M10.625,13.75 L10.625,8.75 L8.125,8.75 L8.125,10 L9.375,10 L9.375,13.75 L7.5,13.75 L7.5,15 L12.5,15 L12.5,13.75 L10.625,13.75 L10.625,13.75 Z M10,5 C9.48223305,5 9.0625,5.41973305 9.0625,5.9375 C9.0625,6.45526695 9.48223305,6.875 10,6.875 C10.517767,6.875 10.9375,6.45526695 10.9375,5.9375 C10.9375,5.41973305 10.517767,5 10,5 Z M10,18.75 C5.16750844,18.75 1.25,14.8324916 1.25,10 C1.25,5.16750844 5.16750844,1.25 10,1.25 C14.8324916,1.25 18.75,5.16750844 18.75,10 C18.75,12.3206443 17.8281276,14.546241 16.1871843,16.1871843 C14.546241,17.8281276 12.3206443,18.75 10,18.75 Z M10,2.5 C5.85786438,2.5 2.5,5.85786438 2.5,10 C2.5,14.1421356 5.85786438,17.5 10,17.5 C14.1421356,17.5 17.5,14.1421356 17.5,10 C17.5,5.85786438 14.1421356,2.5 10,2.5 Z"
-                            id="Fill"
-                          ></path>
-                        </g>
-                      </g>
-                    </svg>
-                  </i>
-                </div>
-                <div class="body-short-02">0.00 ₾</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- third block card-block -->
-          <div class="swiper-slide">
-            <div class="card-block">
-              <div class="on-card-container">
-                <h3 class="productive-heading-03">ბარათზე</h3>
-                <div id="receiverCard" class="form-group mt-16">
-                  <label class="label-01">ბარათის ნომერი</label>
-                  <div class="pa-text-input__field-outer-wrapper">
-                    <div class="pa-text-input__field-wrapper">
-                      <i class="icn pa-input-checkmark-filled-icon"> </i>
-                      <input
-                        type="text"
-                        maxlength="19"
-                        class="pa-text-input"
-                        placeholder="ბარათის 16-ნიშნა ნომერი"
-                        name="receiver"
-                        tabindex="-1"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <!-- TODO:როცა ლოადერი დამეატება ტექსტი უნდა გაქრეს ღილაკზე და დაემტაოს ეს კლასი "text-indent"-->
-                <div class="po-r">
-                  <button
-                    class="btn btn-default btn-primary btn-disabled btn-md mt-10 btn-pay"
-                    name="submitTransfer"
-                    disabled
-                  >
-                    <!-- ეს მობაილზე დაემატა და გადასატანია -->
-                    <span class="text-pay"> გადარიცხვა</span>
-                  </button>
-                  <!-- TODO: loader state-->
-                  <div class="loader"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-dots">
-          <li>
+    <div class="swiper-dots">
+      <li>
             <span id="dot-0" class="swiper-dot swiper-dot-active" data-index="0"
-              >1</span
+            >1</span
             >
-          </li>
-          <li>
-            <span id="dot-1" class="swiper-dot" data-index="1">2</span>
-          </li>
-          <li>
-            <span id="dot-2" class="swiper-dot" data-index="2">3</span>
-          </li>
-        </div>
-
-        <!-- credential-buttons -->
-        <div class="credential-buttons">
-          <button
-            class="btn btn-default btn-primary btn-disabled w-100 next-button"
-            disabled
-          >
-            შემდეგი
-          </button>
-        </div>
-      </div>
+      </li>
+      <li>
+        <span id="dot-1" class="swiper-dot" data-index="1">2</span>
+      </li>
+      <li>
+        <span id="dot-2" class="swiper-dot" data-index="2">3</span>
+      </li>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/swiper-bundle.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery.creditCardValidator.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+
+    <!-- credential-buttons -->
+    <div class="credential-buttons">
+      <button
+              class="btn btn-default btn-primary btn-disabled w-100 next-button"
+              disabled
+      >
+        შემდეგი
+      </button>
+    </div>
+  </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/swiper-bundle.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery.creditCardValidator.js"></script>
+<script src="js/main.js"></script>
+</body>
 </html>
